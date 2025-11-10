@@ -1,6 +1,16 @@
 import streamlit as st
 from transformers import pipeline
 import io
+import fitz
+import docx
+
+def parse_document(uploaded_file):
+    """Parse uploaded document and return text content"""
+    if uploaded_file is not None:
+        file_type = uploaded_file.type
+        # Implementation will be added step by step
+        return ""
+    return ""
 
 st.set_page_config(
     page_title="LocalQuery: Ask Your Docs",
