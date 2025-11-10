@@ -199,3 +199,21 @@ def main():
     except Exception as e:
         print(f"❌ Unexpected training error: {e}")
         sys.exit(1)
+    
+    # Step 7: Save
+    print("\n💾 Saving fine-tuned model...")
+    try:
+        trainer.save_model(MODEL_OUTPUT_DIR)
+        tokenizer.save_pretrained(MODEL_OUTPUT_DIR)
+        print(f"✅ Model and tokenizer saved to: {MODEL_OUTPUT_DIR}")
+        
+        print("\n" + "=" * 50)
+        print("🎯 Fine-tuning Complete!")
+        print(f"📁 Model saved in: {MODEL_OUTPUT_DIR}")
+        print("🚀 You can now use the fine-tuned model in app.py")
+        print("   by enabling 'Use Fine-tuned Model' in the sidebar!")
+        print("=" * 50)
+        
+    except Exception as e:
+        print(f"❌ Error saving model: {e}")
+        sys.exit(1)
