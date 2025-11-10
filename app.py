@@ -97,3 +97,14 @@ use_tuned_model = st.sidebar.checkbox(
     value=False,
     help="Toggle between base DistilBERT and fine-tuned model (if available)"
 )
+
+# Set model path based on checkbox
+if use_tuned_model:
+    model_path = "./my-custom-model"
+    st.sidebar.info("Using fine-tuned model")
+else:
+    model_path = "distilbert-base-cased-distilled-squad"
+    st.sidebar.info("Using base DistilBERT model")
+
+# Load the model
+qa_pipeline = load_model(model_path)
