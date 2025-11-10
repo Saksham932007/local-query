@@ -108,3 +108,11 @@ else:
 
 # Load the model
 qa_pipeline = load_model(model_path)
+
+# Question answering interface
+if context:
+    st.markdown("### 🤔 Ask a Question")
+    user_question = st.text_input(
+        "What would you like to know about this document?",
+        placeholder="e.g., What is the main topic of this document?"
+    )
