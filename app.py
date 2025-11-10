@@ -132,5 +132,13 @@ if context:
                     st.success(f"**Answer:** {result['answer']}")
                     st.info(f"**Confidence:** {result['score']:.4f}")
                     
+                    # Show source context
+                    start_idx = result['start']
+                    end_idx = result['end']
+                    context_window = max(0, start_idx - 100)
+                    context_end = min(len(context), end_idx + 100)
+                    source_context = context[context_window:context_end]
+                    st.info(f"**Source (Chars {start_idx}-{end_idx}):** ...{source_context}...")
+                    
                 except Exception as e:
                     st.error(f"Error processing question: {str(e)}")
