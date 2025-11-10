@@ -62,3 +62,11 @@ uploaded_file = st.file_uploader(
     type=["pdf", "docx", "txt"],
     help="Upload a PDF, Word document, or text file to ask questions about"
 )
+
+# Process uploaded file
+context = ""
+if uploaded_file is not None:
+    with st.spinner("Processing document..."):
+        context = parse_document(uploaded_file)
+        if context:
+            st.success(f"Document processed successfully! Extracted {len(context)} characters.")
