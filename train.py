@@ -117,3 +117,19 @@ def main():
         inputs["start_positions"] = start_positions
         inputs["end_positions"] = end_positions
         return inputs
+    
+    # Apply preprocessing to the dataset
+    print("\n🔄 Preprocessing dataset...")
+    try:
+        tokenized_datasets = raw_datasets.map(
+            preprocess_function,
+            batched=True,
+            remove_columns=raw_datasets["train"].column_names,
+        )
+        print("✅ Dataset preprocessing completed!")
+        print(f"Tokenized train size: {len(tokenized_datasets['train'])}")
+        print(f"Tokenized validation size: {len(tokenized_datasets['validation'])}")
+        
+    except Exception as e:
+        print(f"❌ Error during preprocessing: {e}")
+        sys.exit(1)
