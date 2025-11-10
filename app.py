@@ -70,3 +70,8 @@ if uploaded_file is not None:
         context = parse_document(uploaded_file)
         if context:
             st.success(f"Document processed successfully! Extracted {len(context)} characters.")
+
+# Display document preview if available
+if context:
+    with st.expander("📄 Document Preview (First 1000 characters)"):
+        st.text(context[:1000] + ("..." if len(context) > 1000 else ""))
