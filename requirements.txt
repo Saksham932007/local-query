@@ -1,0 +1,17 @@
+# Core dependencies for LocalQuery Hackathon Project
+
+# For the App
+streamlit
+
+# For the NLP / Transformer
+transformers
+torch # Or tensorflow, if you prefer
+accelerate # Recommended by Hugging Face Trainer
+
+# For Document Parsing
+PyMuPDF  # 'fitz' - for PDFs
+python-docx # for .docx
+
+# For the (Stretch Goal) Training
+datasets # To load and process training data (e.g., SQuAD)
+scikit-learn # For metrics
