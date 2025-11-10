@@ -87,3 +87,13 @@ if uploaded_file is not None:
 if context:
     with st.expander("📄 Document Preview (First 1000 characters)"):
         st.text(context[:1000] + ("..." if len(context) > 1000 else ""))
+
+# Sidebar for model configuration
+st.sidebar.title("⚙️ Configuration")
+st.sidebar.markdown("### Model Selection")
+
+use_tuned_model = st.sidebar.checkbox(
+    "Use Fine-tuned Model", 
+    value=False,
+    help="Toggle between base DistilBERT and fine-tuned model (if available)"
+)
