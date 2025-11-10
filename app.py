@@ -4,6 +4,11 @@ import io
 import fitz
 import docx
 
+@st.cache_resource
+def load_model(model_name_or_path):
+    """Load the Q&A model with caching"""
+    pass
+
 def parse_document(uploaded_file):
     """Parse uploaded document and return text content"""
     if uploaded_file is not None:
