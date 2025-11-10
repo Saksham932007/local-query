@@ -44,3 +44,19 @@ def main():
     except Exception as e:
         print(f"❌ Error loading dataset: {e}")
         sys.exit(1)
+    
+    # Step 2: Load Tokenizer
+    print("\n🔤 Loading tokenizer...")
+    try:
+        tokenizer = AutoTokenizer.from_pretrained(MODEL_CHECKPOINT)
+        print(f"✅ Tokenizer loaded: {MODEL_CHECKPOINT}")
+        
+        # Check if it's a Fast Tokenizer (required for QA)
+        if not hasattr(tokenizer, "is_fast") or not tokenizer.is_fast:
+            print("⚠️  Warning: This tokenizer is not a Fast Tokenizer. QA training might not work properly.")
+        else:
+            print("✅ Fast Tokenizer confirmed - ready for Q&A training")
+            
+    except Exception as e:
+        print(f"❌ Error loading tokenizer: {e}")
+        sys.exit(1)
