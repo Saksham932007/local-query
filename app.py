@@ -32,8 +32,21 @@ def parse_document(uploaded_file):
                 st.error(f"Could not read the PDF file: {str(e)}")
                 return ""
         
-        # Implementation for other file types will be added step by step
-        return ""
+        # Handle .docx files
+        elif file_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            try:
+                doc = docx.Document(uploaded_file)
+                text = ""
+                for paragraph in doc.paragraphs:
+                    text += paragraph.text + "\n"
+                return text
+            except Exception as e:
+                st.error(f"Could not read the DOCX file: {str(e)}")
+                return ""
+        
+        else:
+            st.error(f"Unsupported file type: {file_type}")
+            return ""
     return ""
 
 st.set_page_config(
