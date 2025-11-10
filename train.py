@@ -178,3 +178,24 @@ def main():
         data_collator=data_collator,
     )
     print("✅ Trainer instantiated successfully!")
+    
+    # Step 6: Train!
+    print("\n🔥 Starting training...")
+    print("=" * 50)
+    
+    try:
+        trainer.train()
+        print("\n🎉 Training completed successfully!")
+        
+    except RuntimeError as e:
+        if "out of memory" in str(e).lower():
+            print(f"❌ GPU Out of Memory Error: {e}")
+            print("💡 Try reducing BATCH_SIZE or MAX_LENGTH in the constants")
+            print("💡 Or switch to CPU training (though it will be slower)")
+            sys.exit(1)
+        else:
+            print(f"❌ Training error: {e}")
+            sys.exit(1)
+    except Exception as e:
+        print(f"❌ Unexpected training error: {e}")
+        sys.exit(1)
