@@ -127,6 +127,10 @@ if context:
             with st.spinner("Finding answer..."):
                 try:
                     result = qa_pipeline(question=user_question, context=context)
-                    # Display results will be added in next steps
+                    
+                    # Display the answer
+                    st.success(f"**Answer:** {result['answer']}")
+                    st.info(f"**Confidence:** {result['score']:.4f}")
+                    
                 except Exception as e:
                     st.error(f"Error processing question: {str(e)}")
