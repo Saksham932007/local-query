@@ -20,8 +20,10 @@ venv.bak/
 # Data & Models (Keep your repo light!)
 *.pdf
 *.docx
-*.txt
 *.json
+
+# Exclude requirements.txt from being ignored
+!requirements.txt
 
 # Trained models
 /my-custom-model/
