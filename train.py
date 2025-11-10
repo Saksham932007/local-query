@@ -20,3 +20,27 @@ LEARNING_RATE = 3e-5
 NUM_TRAIN_EPOCHS = 2
 BATCH_SIZE = 8
 HACKATHON_MODE = True  # Set to True for faster, smaller training
+
+def main():
+    print("🚀 LocalQuery Fine-tuning Script")
+    print("=" * 50)
+    
+    # Step 1: Load Dataset
+    print("📥 Loading SQuAD dataset...")
+    try:
+        raw_datasets = load_dataset(DATASET_NAME, DATASET_CONFIG)
+        print(f"✅ Dataset loaded successfully!")
+        print(f"Train set size: {len(raw_datasets['train'])}")
+        print(f"Validation set size: {len(raw_datasets['validation'])}")
+        
+        # HACKATHON MODE: Use smaller subset for faster training
+        if HACKATHON_MODE:
+            print("⚡ HACKATHON MODE: Using smaller dataset for faster training")
+            raw_datasets["train"] = raw_datasets["train"].select(range(1000))
+            raw_datasets["validation"] = raw_datasets["validation"].select(range(200))
+            print(f"Reduced train set size: {len(raw_datasets['train'])}")
+            print(f"Reduced validation set size: {len(raw_datasets['validation'])}")
+            
+    except Exception as e:
+        print(f"❌ Error loading dataset: {e}")
+        sys.exit(1)
