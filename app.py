@@ -125,5 +125,8 @@ if context:
             st.warning("Please enter a question.")
         else:
             with st.spinner("Finding answer..."):
-                # Q&A pipeline call will be added in next step
-                pass
+                try:
+                    result = qa_pipeline(question=user_question, context=context)
+                    # Display results will be added in next steps
+                except Exception as e:
+                    st.error(f"Error processing question: {str(e)}")
