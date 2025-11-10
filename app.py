@@ -8,7 +8,17 @@ def parse_document(uploaded_file):
     """Parse uploaded document and return text content"""
     if uploaded_file is not None:
         file_type = uploaded_file.type
-        # Implementation will be added step by step
+        
+        # Handle .txt files
+        if file_type == "text/plain":
+            try:
+                text = uploaded_file.read().decode("utf-8")
+                return text
+            except UnicodeDecodeError:
+                st.error("Could not read the text file. Please ensure it's a valid UTF-8 encoded file.")
+                return ""
+        
+        # Implementation for other file types will be added step by step
         return ""
     return ""
 
