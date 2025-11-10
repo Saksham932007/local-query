@@ -7,7 +7,14 @@ import docx
 @st.cache_resource
 def load_model(model_name_or_path):
     """Load the Q&A model with caching"""
-    pass
+    try:
+        st.info(f"Loading model: {model_name_or_path}")
+        qa_pipeline = pipeline("question-answering", model=model_name_or_path)
+        st.success("Model loaded successfully!")
+        return qa_pipeline
+    except Exception as e:
+        st.error(f"Failed to load model: {str(e)}")
+        return None
 
 def parse_document(uploaded_file):
     """Parse uploaded document and return text content"""
