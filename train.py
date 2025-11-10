@@ -133,3 +133,14 @@ def main():
     except Exception as e:
         print(f"❌ Error during preprocessing: {e}")
         sys.exit(1)
+    
+    # Step 4: Load Model
+    print("\n🤖 Loading model for fine-tuning...")
+    try:
+        model = AutoModelForQuestionAnswering.from_pretrained(MODEL_CHECKPOINT)
+        print(f"✅ Model loaded: {MODEL_CHECKPOINT}")
+        print(f"Model parameters: {model.num_parameters():,}")
+        
+    except Exception as e:
+        print(f"❌ Error loading model: {e}")
+        sys.exit(1)
