@@ -144,3 +144,26 @@ def main():
     except Exception as e:
         print(f"❌ Error loading model: {e}")
         sys.exit(1)
+    
+    # Step 5: Set up Trainer
+    print("\n⚙️  Setting up training configuration...")
+    
+    training_args = TrainingArguments(
+        output_dir=MODEL_OUTPUT_DIR,
+        evaluation_strategy="epoch",
+        learning_rate=LEARNING_RATE,
+        per_device_train_batch_size=BATCH_SIZE,
+        per_device_eval_batch_size=BATCH_SIZE,
+        num_train_epochs=NUM_TRAIN_EPOCHS,
+        weight_decay=0.01,
+        save_strategy="epoch",
+        save_total_limit=2,
+        load_best_model_at_end=True,
+        logging_dir=f"{MODEL_OUTPUT_DIR}/logs",
+        logging_steps=50,
+        report_to=None,  # Disable wandb/tensorboard for hackathon
+        push_to_hub=False,
+    )
+    
+    data_collator = DefaultDataCollator()
+    print("✅ Training configuration completed!")
