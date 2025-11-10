@@ -167,3 +167,14 @@ def main():
     
     data_collator = DefaultDataCollator()
     print("✅ Training configuration completed!")
+    
+    # Instantiate the Trainer
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        train_dataset=tokenized_datasets["train"],
+        eval_dataset=tokenized_datasets["validation"],
+        tokenizer=tokenizer,
+        data_collator=data_collator,
+    )
+    print("✅ Trainer instantiated successfully!")
