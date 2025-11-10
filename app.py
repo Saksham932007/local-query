@@ -123,4 +123,7 @@ if context:
             st.error("Model not loaded. Please check the model path.")
         elif not user_question.strip():
             st.warning("Please enter a question.")
-        # Answer processing will be added in next steps
+        else:
+            with st.spinner("Finding answer..."):
+                # Q&A pipeline call will be added in next step
+                pass
