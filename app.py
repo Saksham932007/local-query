@@ -116,3 +116,11 @@ if context:
         "What would you like to know about this document?",
         placeholder="e.g., What is the main topic of this document?"
     )
+    
+    # Get answer button with validation
+    if st.button("Get Answer", type="primary", disabled=not qa_pipeline or not user_question.strip()):
+        if not qa_pipeline:
+            st.error("Model not loaded. Please check the model path.")
+        elif not user_question.strip():
+            st.warning("Please enter a question.")
+        # Answer processing will be added in next steps
